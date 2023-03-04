@@ -33,6 +33,13 @@
 
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+
+    <style>
+        .box-shadow {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    </style>
+
 </head>
 
 <body>
@@ -42,12 +49,12 @@
         <div class="container d-flex align-items-center justify-content-between">
 
             <!--<h1 class="logo"><a href="index.html">Safri<span>Soft.</span></a></h1>
-     Uncomment below if you prefer to use an image logo -->
-             <a href="~/Home/Index" class="logo"><img src="../../assets/img/iconOnly.png" alt="" class="img-fluid"></a>
+            Uncomment below if you prefer to use an image logo -->
+            <a href="~/Home/Index" class="logo"><img src="../../assets/img/iconOnly.png" alt="" class="img-fluid"></a>
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
-                    <li class="active"><a href="index">Home</a></li>
+                    <li class="active"><a href="~/Home/Index">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#services">Services</a></li>
                     @*<li><a href="#portfolio">Portfolio</a></li>*@
@@ -56,13 +63,15 @@
                     <li class="drop-down">
                         <a href="">Softwares</a>
                         <ul>
-                            <li><a href="../Account/login">Safri Inventory</a></li>
+                            <li><a href="#">Inventory Management</a></li>
+                            <li><a href="#">Rental Management</a></li>
+                            <li><a href="#">Ticket Management</a></li>
                         </ul>
                     </li>
                 </ul>
             </nav><!-- .nav-menu -->
 
-            <a href="#about" class="get-started-btn scrollto"><i class="fa fa-toggle-on"></i> Get Started</a>
+            <a href="#" onclick="companyRegisterModal()" class="get-started-btn scrollto"><i class="fa fa-toggle-on"></i> Get Started</a>
 
         </div>
     </header><!-- End Header -->
@@ -205,7 +214,7 @@
             </div>
         </section><!-- End Services Section -->
         <!-- ======= Services Section ======= -->
-        <section id="services" class="services">
+        <!--<section id="services" class="services">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
@@ -224,133 +233,133 @@
                 </div>
 
             </div>
-        </section><!-- End Services Section -->
+        </section> End Services Section -->
         @*<section id="team" class="team">
-            <div class="container" data-aos="fade-up">
+                <div class="container" data-aos="fade-up">
 
-                <div class="section-title">
-                    <h2>Team</h2>
-                    <p>Meet the team</p>
+                    <div class="section-title">
+                        <h2>Team</h2>
+                        <p>Meet the team</p>
+                    </div>
+
+                    <div class="row" style="text-align:center;">
+                        <div class="col-lg-4 col-md-4 col-xs-4 d-flex" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="icon-box">
+                                <img src="~/assets/img/team/team-1.jpg" style="height:65%;width:100%;border-radius:10px;margin-bottom:10px;" />
+                                <i class="fa fa-circle" style="color:#17a2b8;"></i>
+                                <h4 class="text-bold">Mogomotsi Olifant</h4>
+                                <p>CEO/CTO (Founder)</p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-xs-4 d-flex" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="icon-box">
+                                <img src="~/assets/img/team/team-2.jpg" style="height:65%;width:100%;border-radius:10px;margin-bottom:10px;" />
+                                <i class="fa fa-circle" style="color:#17a2b8;"></i>
+                                <h4 class="text-bold">Debbie Olifant</h4>
+                                <p>COO</p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-xs-4 d-flex" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="icon-box">
+                                <img src="~/assets/img/team/team-5.jpg" style="height:65%;width:100%;border-radius:10px;margin-bottom:10px;" />
+                                <i class="fa fa-circle" style="color:#17a2b8;"></i>
+                                <h4 class="text-bold">Relebogile Matjila</h4>
+                                <p>CFO</p>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
-
-                <div class="row" style="text-align:center;">
-                    <div class="col-lg-4 col-md-4 col-xs-4 d-flex" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="icon-box">
-                            <img src="~/assets/img/team/team-1.jpg" style="height:65%;width:100%;border-radius:10px;margin-bottom:10px;" />
-                            <i class="fa fa-circle" style="color:#17a2b8;"></i>
-                            <h4 class="text-bold">Mogomotsi Olifant</h4>
-                            <p>CEO/CTO (Founder)</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-xs-4 d-flex" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="icon-box">
-                            <img src="~/assets/img/team/team-2.jpg" style="height:65%;width:100%;border-radius:10px;margin-bottom:10px;" />
-                            <i class="fa fa-circle" style="color:#17a2b8;"></i>
-                            <h4 class="text-bold">Debbie Olifant</h4>
-                            <p>COO</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-xs-4 d-flex" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="icon-box">
-                            <img src="~/assets/img/team/team-5.jpg" style="height:65%;width:100%;border-radius:10px;margin-bottom:10px;" />
-                            <i class="fa fa-circle" style="color:#17a2b8;"></i>
-                            <h4 class="text-bold">Relebogile Matjila</h4>
-                            <p>CFO</p>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section>*@<!-- End Services Section -->
+            </section>*@<!-- End Services Section -->
         <!-- ======= Cta Section ======= -->
         @*<section id="cta" class="cta">
-            <div class="container" data-aos="zoom-in">
+                <div class="container" data-aos="zoom-in">
 
-                <div class="text-center">
-                    <h3>Call To Action</h3>
-                    <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <a class="cta-btn" href="#">Call To Action</a>
+                    <div class="text-center">
+                        <h3>Call To Action</h3>
+                        <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <a class="cta-btn" href="#">Call To Action</a>
+                    </div>
+
                 </div>
-
-            </div>
-        </section>*@<!-- End Cta Section -->
+            </section>*@<!-- End Cta Section -->
         <!-- ======= Contact Section ======= -->
         @*<section id="contact" class="contact">
-            <div class="container" data-aos="fade-up">
+                <div class="container" data-aos="fade-up">
 
-                <div class="section-title">
-                    <h2>Contact</h2>
-                    <p>Contact Us</p>
-                </div>
+                    <div class="section-title">
+                        <h2>Contact</h2>
+                        <p>Contact Us</p>
+                    </div>
 
-                <div>
-                    <iframe style="border:0; width: 100%; height: 270px;" src="https://maps.google.com/maps?q=fourways&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" allowfullscreen></iframe>
-                </div>
+                    <div>
+                        <iframe style="border:0; width: 100%; height: 270px;" src="https://maps.google.com/maps?q=fourways&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" allowfullscreen></iframe>
+                    </div>
 
-                <div class="row mt-5">
+                    <div class="row mt-5">
 
-                    <div class="col-lg-4">
-                        <div class="info">
-                            <div class="address">
-                                <i class="fa fa-map-marker"></i>
-                                <h4>Location:</h4>
-                                <p>922 Burnett Street, Riverside view, Sandton 2191</p>
+                        <div class="col-lg-4">
+                            <div class="info">
+                                <div class="address">
+                                    <i class="fa fa-map-marker"></i>
+                                    <h4>Location:</h4>
+                                    <p>922 Burnett Street, Riverside view, Sandton 2191</p>
+                                </div>
+
+                                <div class="email">
+                                    <i class="fa fa-comments"></i>
+                                    <h4>Email:</h4>
+                                    <p>info@safrisoft.com</p>
+                                </div>
+
+                                <div class="phone">
+                                    <i class="fa fa-tablet"></i>
+                                    <h4>Call:</h4>
+                                    <p>067 272 7320</p>
+                                </div>
+
                             </div>
 
-                            <div class="email">
-                                <i class="fa fa-comments"></i>
-                                <h4>Email:</h4>
-                                <p>info@safrisoft.com</p>
-                            </div>
+                        </div>
 
-                            <div class="phone">
-                                <i class="fa fa-tablet"></i>
-                                <h4>Call:</h4>
-                                <p>067 272 7320</p>
-                            </div>
+                        <div class="col-lg-8 mt-5 mt-lg-0">
+
+                            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                                <div class="form-row">
+                                    <div class="col-md-6 form-group">
+                                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                        <div class="validate"></div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                                        <div class="validate"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                                    <div class="validate"></div>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                                    <div class="validate"></div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="loading">Loading</div>
+                                    <div class="error-message"></div>
+                                    <div class="sent-message">Your message has been sent. Thank you!</div>
+                                </div>
+                                <div class="text-center"><button type="submit"><i class="fa fa-pencil-square-o"></i> Send Message</button></div>
+                            </form>
 
                         </div>
 
                     </div>
 
-                    <div class="col-lg-8 mt-5 mt-lg-0">
-
-                        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                            <div class="form-row">
-                                <div class="col-md-6 form-group">
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                                    <div class="validate"></div>
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                                    <div class="validate"></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                                <div class="validate"></div>
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-                                <div class="validate"></div>
-                            </div>
-                            <div class="mb-3">
-                                <div class="loading">Loading</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your message has been sent. Thank you!</div>
-                            </div>
-                            <div class="text-center"><button type="submit"><i class="fa fa-pencil-square-o"></i> Send Message</button></div>
-                        </form>
-
-                    </div>
-
                 </div>
-
-            </div>
-        </section>*@<!-- End Contact Section -->
+            </section>*@<!-- End Contact Section -->
 
     </main><!-- End #main -->
     <!-- ======= Footer ======= -->
@@ -377,7 +386,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -394,6 +403,79 @@
     <a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
     <div id="preloader"></div>
 
+
+    <!-- Modal -->
+    <div class="modal fade" id="companyRegister">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="companyRegister" class="modal-title">Get Started Now...</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6 text-center">
+                            <p>Company Information</p>
+                        </div>
+                        <div class="col-lg-6 text-center">
+                            <p>Choose Software(s)</p>
+                        </div>
+
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-6" style="border-right: 1px solid lightgrey; padding: 40px !important;">
+                            <input type="text" id="companyName" class="form-control" placeholder="Company Name" required />
+                            <input type="email" id="companyEmail" class="form-control mt-3" placeholder="Company Email" required />
+                            <input type="tel" id="companyTel" class="form-control mt-3" placeholder="Company Telephone" required />
+                            <input type="text" id="companyFirstlineAddress" class="form-control mt-3" placeholder="Line Address" required />
+                            <select id="companyProvince" class="form-control mt-3" onchange="provinceChange(this.value)">
+                                <option value="EasternCape">Eastern Cape</option>
+                                <option value="FreeState">Free State</option>
+                                <option value="Gauteng">Gauteng</option>
+                                <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+                                <option value="Limpopo">Limpopo</option>
+                                <option value="Mpumalanga">Mpumalanga</option>
+                                <option value="NorthernCape">Northern Cape</option>
+                                <option value="NorthWest">North West</option>
+                                <option value="WesternCape">Western Cape</option>
+                            </select>
+                            <select id="companyCity" class="form-control mt-3"></select>
+                            <input type="number" min="0" max="10000" id="companyPostalCode" class="form-control mt-3" placeholder="Postal Code" required />
+                            <input type="password" id="password" class="form-control mt-5" placeholder="Create Password" required />
+                            <input type="password" id="cPassword" class="form-control mt-3" placeholder="Confirm Password" required />
+                        </div>
+                        <div class="col-lg-6" style="padding:40px !important;text-align:center;">
+                            <div class="row">
+                                <p class="font-weight-light">Inventory Management Software</p>
+                                <img src="../../Content/images/inventory.png" alt="" class="img-fluid img-radiu box-shadow">
+                            </div>
+
+                            <div class="row mt-3 text-center">
+                                <p class="font-weight-light">Rental Management Software</p>
+                                <img src="../../Content/images/rental.png" alt="" class="img-fluid img-radiu box-shadow">
+                            </div>
+
+                            <div class="row mt-3">
+                                <p class="font-weight-light">Ticket Management Software</p>
+                                <img src="../../Content/images/inventory.png" alt="" class="img-fluid img-radiu box-shadow">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-right">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Get Started</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+
     <!-- Vendor JS Files -->
     <script src="../../assets/vendor/jquery/jquery.min.js"></script>
     <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -408,6 +490,99 @@
 
     <!-- Template Main JS File -->
     <script src="../../assets/js/main.js"></script>
+
+    <script type="text/javascript">
+
+        var easternCape = "Alice,Butterworth,East London,Graaff-Reinet,Grahamstown,King William’s Town,Mthatha,Port Elizabeth,Queenstown,Uitenhage,Zwelitsha";
+        var freeState = "Bethlehem,Bloemfontein,Jagersfontein,Kroonstad,Odendaalsrus,Parys,Phuthaditjhaba,Sasolburg,Virginia,Welkom";
+        var gauteng = "Benoni,Boksburg,Brakpan,Carletonville,Germiston,Johannesburg,Krugersdorp,Pretoria,Randburg,Randfontein,Roodepoort,Soweto,Springs,Vanderbijlpark,Vereeniging";
+        var kzn = "Durban,Empangeni,Ladysmith,Newcastle,Pietermaritzburg,Pinetown,Ulundi,Umlazi";
+        var limpopo = "Giyani,Lebowakgomo,Musina,Phalaborwa,Polokwane,Seshego,Sibasa,Thabazimbi";
+        var nw = "Klerksdorp,Mahikeng,Mmabatho,Potchefstroom,Rustenburg";
+        var nc = "Kimberley,Kuruman,Port Nolloth";
+        var wc = "Bellville,Cape Town,Constantia,George,Hopefield,Oudtshoorn,Paarl,Simon’s Town,Stellenbosch,Swellendam,Worcester";
+        var mp = "Emalahleni,Nelspruit,Secunda";
+
+        function companyRegisterModal() {
+            $('#companyRegister').modal('show');
+        }
+
+        var listEC = easternCape.split(",");
+
+        for (var i = 0; i < listEC.length; i++) {
+            $('#companyCity').append('<option value="' + listEC[i] + '">' + listEC[i] + '</option>');
+        }
+        
+        function provinceChange(val) {
+            $('#companyCity').text('');
+            if (val === 'EasternCape') {
+                var listEC = easternCape.split(",");
+
+                for (var i = 0; i < listEC.length; i++) {
+                    $('#companyCity').append('<option value="' + listEC[i] + '">' + listEC[i] + '</option>');
+                }
+            }
+            if (val === 'FreeState') {
+                var list = freeState.split(",");
+
+                for (var i = 0; i < list.length; i++) {
+                    $('#companyCity').append('<option value="' + list[i] + '">' + list[i] + '</option>');
+                }
+            }
+            if (val === 'Gauteng') {
+                var list = gauteng.split(",");
+
+                for (var i = 0; i < list.length; i++) {
+                    $('#companyCity').append('<option value="' + list[i] + '">' + list[i] + '</option>');
+                }
+            }
+            if (val === 'KwaZulu-Natal') {
+                var list = kzn.split(",");
+
+                for (var i = 0; i < list.length; i++) {
+                    $('#companyCity').append('<option value="' + list[i] + '">' + list[i] + '</option>');
+                }
+            }
+            if (val === 'Limpopo') {
+                var list = limpopo.split(",");
+
+                for (var i = 0; i < list.length; i++) {
+                    $('#companyCity').append('<option value="' + list[i] + '">' + list[i] + '</option>');
+                }
+            }
+            if (val === 'Mpumalanga') {
+                var list = mp.split(",");
+
+                for (var i = 0; i < list.length; i++) {
+                    $('#companyCity').append('<option value="' + list[i] + '">' + list[i] + '</option>');
+                }
+            }
+            if (val === 'NorthernCape') {
+                var list = nc.split(",");
+
+                for (var i = 0; i < list.length; i++) {
+                    $('#companyCity').append('<option value="' + list[i] + '">' + list[i] + '</option>');
+                }
+            }
+            if (val === 'NorthWest') {
+                var list = nw.split(",");
+
+                for (var i = 0; i < list.length; i++) {
+                    $('#companyCity').append('<option value="' + list[i] + '">' + list[i] + '</option>');
+                }
+            }
+            if (val === 'WesternCape') {
+                var list = wc.split(",");
+
+                for (var i = 0; i < list.length; i++) {
+                    $('#companyCity').append('<option value="' + list[i] + '">' + list[i] + '</option>');
+                }
+            }
+        }
+
+        
+
+    </script>
 
 </body>
 
