@@ -6,13 +6,11 @@ using System.Web;
 
 namespace SafriSoftv1._3.Models.Data
 {
-    public class Package
+    public class Software
     {
         [Key]
         public int Id { get; set; }
-        public string PackageName { get; set; }
-        public string PackageDescription { get; set; }
-        public decimal PackagePrice { get; set; }
-        public int SoftwareId { get; set; }
+        public string Name { get; set; }
+        
     }
 }

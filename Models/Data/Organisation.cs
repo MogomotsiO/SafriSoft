@@ -6,7 +6,7 @@ using System.Web;
 
 namespace SafriSoftv1._3.Models.Data
 {
-    public class Organisations
+    public class Organisation
     {
         [Key]
         public int OrganisationId { get; set; }
@@ -28,6 +28,5 @@ namespace SafriSoftv1._3.Models.Data
         public string ImgLogoSource { get; set; }
         public int PackageId { get; set; }
         public string OrganisationProvince { get; set; }
-        public string SelectedSoftwares { get; set; }
     }
 }

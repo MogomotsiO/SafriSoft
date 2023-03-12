@@ -53,7 +53,7 @@ namespace SafriSoftv1._3.Services
             var emailText = BuildEmailHeader();
             emailText.Append("<font style='text-align: left;color:#595a5c'>" + body + "<br/><br/>");
             emailText.Append("<font style='text-align: left;color:#595a5c'>Regards,<br/>");
-            emailText.Append("<font style='text-align: left;color:#00aeef'>SafriSoft.");
+            emailText.Append("<font style='text-align: left;color:#17a2b8'>SafriSoft.");
 
             EmailMessage message = new EmailMessage(ews);
             message.Subject = subject;
@@ -89,16 +89,7 @@ namespace SafriSoftv1._3.Services
         {
             var header = new StringBuilder();
 
-            header.Append("<html><head><meta http-equiv='Content-Type' content='text/html; charset=us-ascii'>");
-            header.Append("<style type='text/css'>p, td, th, div, span, a, b, strong, h1, h2 { font-family: 'Segoe UI', Arial,Helvetica, sans-serif; }</style></head><body><table style='font-family: 'Segoe UI',Arial, Helvetica,sans-serif; font-size: 12px;' width='100%'>");
-            header.Append("<tr><td style='text-align: center;'><table width='600px' bgcolor='#fff' cellspacing='2' border='0' style='border-collapse: collapse; border: 0px none #E8E8E8; margin: 0px auto;' align='center'>");
-            header.Append("<tr><th align='right' colspan='2' style='padding: 10px; color: white; background-color: #ffffff; font-weight: normal'>");
-            header.Append("<div style='text-transform: uppercase; font-size: 11px; font-weight: bold; font-family: 'Segoe UI', Arial, Helvetica, sans-serif;'></div></th></tr></td></tr>");
-            header.Append("<tr><th align='left' colspan='2' style='padding: 10px; color: white; background-color:#00aeef; font-weight: normal;border-left:5px solid #000;'>");
-            header.Append("<div style='text-transform: uppercase; font-size: 11px; font-weight: bold; font-family: 'Segoe UI',Arial, Helvetica, sans-serif;'></div>");
-            header.Append("<h1 style='margin-top: 0px; margin-bottom: 5px; font-size: 30px; font-weight: normal;'>SafriSoft.</h1>");
-            header.Append("<span style='font-size: 12px;'>Simplified software for your business</span></th></tr>");
-            header.Append("<tr><td colspan='2' style='font-size: 11px; padding: 20px; vertical-align: top;background-color:#ffffff;'>");
+            header.Append("<h1 style='color:#17a2b8;'>SafriSoft.</h1>");
             header.Append("<font style='color:#595a5c;text-align: left;'>Dear Client<br/><br/>");
 
             return header;

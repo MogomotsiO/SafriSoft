@@ -14,9 +14,11 @@ namespace SafriSoftv1._3.Models
         {
         }
 
-        public virtual DbSet<Organisations> Organisations { get; set; }
+        public virtual DbSet<Organisation> Organisations { get; set; }
+        public virtual DbSet<OrganisationSoftware> OrganisationSoftwares { get; set; }
         public virtual DbSet<Package> Packages { get; set; }
         public virtual DbSet<PackageFeature> PackageFeatures { get; set; }
+        public virtual DbSet<Software> Softwares { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
