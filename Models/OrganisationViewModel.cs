@@ -14,6 +14,7 @@ namespace SafriSoftv1._3.Models
         public string OrganisationLogo { get; set; }
         public string OrganisationStreet { get; set; }
         public string OrganisationSuburb { get; set; }
+        public string OrganisationProvince { get; set; }
         public string OrganisationCity { get; set; }
         public int OrganisationCode { get; set; }
         public string AccountName { get; set; }
@@ -23,5 +24,9 @@ namespace SafriSoftv1._3.Models
         public string BranchCode { get; set; }
         public string ClientReference { get; set; }
         public int VATNumber { get; set; }
+        public string Password { get; set; }
+        public string ConfirmedPassword { get; set; }
+        public string[] SelectedSoftwares { get; set; }
+
     }
 }

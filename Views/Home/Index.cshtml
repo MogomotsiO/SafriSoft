@@ -28,6 +28,9 @@
     <link href="../../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="../../assets/vendor/aos/aos.css" rel="stylesheet">
 
+    <!-- Toastr -->
+    <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
+
     <!-- Template Main CSS File -->
     <link href="../../assets/css/style.css" rel="stylesheet">
 
@@ -37,7 +40,19 @@
     <style>
         .box-shadow {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            cursor:pointer;
         }
+
+        .a-tag-style{
+            text-decoration:none;
+            color:#fff;
+        }
+
+        .a-tag-style:hover {
+            text-decoration: none;
+            color: #fff;
+        }
+
     </style>
 
 </head>
@@ -63,9 +78,9 @@
                     <li class="drop-down">
                         <a href="">Softwares</a>
                         <ul>
-                            <li><a href="#">Inventory Management</a></li>
-                            <li><a href="#">Rental Management</a></li>
-                            <li><a href="#">Ticket Management</a></li>
+                            <li><a href="#" onclick="showSoftwareImage('inventory')">Inventory Management</a></li>
+                            <li><a href="#" onclick="showSoftwareImage('rental')">Rental Management</a></li>
+                            <li><a href="#" onclick="showSoftwareImage('ticket')">Ticket Management</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -122,8 +137,11 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-                        <img src="../../assets/img/about-extra-1.svg" class="img-fluid img-radius" alt="">
+                    <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100" style="margin-top: -230px;">
+                        @*<img src="../../assets/img/about-extra-1.svg" class="img-fluid img-radius" alt="">*@
+                        <video  height="620" width="620" id="advert" loop muted>
+                            <source src="~/Content/videos/Advert3.mp4" type="video/mp4">
+                        </video>
                     </div>
                     <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right" data-aos-delay="100">
                         <h3>SafriSoft is dedicated to providing quality simplified business software.</h3>
@@ -425,12 +443,13 @@
 
                     </div>
                     <div class="row mt-3">
-                        <div class="col-lg-6" style="border-right: 1px solid lightgrey; padding: 40px !important;">
+                        <div class="col-lg-6" style="border-right: 1px solid #eee; padding: 30px !important;">
                             <input type="text" id="companyName" class="form-control" placeholder="Company Name" required />
                             <input type="email" id="companyEmail" class="form-control mt-3" placeholder="Company Email" required />
-                            <input type="tel" id="companyTel" class="form-control mt-3" placeholder="Company Telephone" required />
+                            <input type="number" id="companyTel" class="form-control mt-3" placeholder="Company Telephone" required />
                             <input type="text" id="companyFirstlineAddress" class="form-control mt-3" placeholder="Line Address" required />
                             <select id="companyProvince" class="form-control mt-3" onchange="provinceChange(this.value)">
+                                <option value="0">Select province</option>
                                 <option value="EasternCape">Eastern Cape</option>
                                 <option value="FreeState">Free State</option>
                                 <option value="Gauteng">Gauteng</option>
@@ -443,31 +462,88 @@
                             </select>
                             <select id="companyCity" class="form-control mt-3"></select>
                             <input type="number" min="0" max="10000" id="companyPostalCode" class="form-control mt-3" placeholder="Postal Code" required />
-                            <input type="password" id="password" class="form-control mt-5" placeholder="Create Password" required />
+                            <p class="font-weight-light mt-3">Selected Software(s)</p>
+                            <div id="selected-software">
+
+                            </div>
+                            <input type="password" id="password" class="form-control mt-4" placeholder="Create Password" required />
                             <input type="password" id="cPassword" class="form-control mt-3" placeholder="Confirm Password" required />
+                            <img src="../../assets/img/about-extra-1.svg" class="img-fluid img-radius mt-5" alt="">
                         </div>
-                        <div class="col-lg-6" style="padding:40px !important;text-align:center;">
+                        <div class="col-lg-6" style="padding: 20px !important; padding-top: 30px !important;text-align:center;">
                             <div class="row">
-                                <p class="font-weight-light">Inventory Management Software</p>
-                                <img src="../../Content/images/inventory.png" alt="" class="img-fluid img-radiu box-shadow">
-                            </div>
+                                <div class="col-lg-6">
+                                    <p class="font-weight-light text-info font-italic">Inventory Management Software</p>
+                                    <img src="../../Content/images/inventory.png" alt="" class="img-fluid img-radiu box-shadow" onclick="showSoftwareImage('inventory')">
+                                </div>
 
-                            <div class="row mt-3 text-center">
-                                <p class="font-weight-light">Rental Management Software</p>
-                                <img src="../../Content/images/rental.png" alt="" class="img-fluid img-radiu box-shadow">
-                            </div>
+                                <div class="col-lg-6  text-center">
+                                    <p class="font-weight-light text-info font-italic">Rental Management Software</p>
+                                    <img src="../../Content/images/rental.png" alt="" class="img-fluid img-radiu box-shadow" onclick="showSoftwareImage('rental')">
+                                </div>
 
-                            <div class="row mt-3">
-                                <p class="font-weight-light">Ticket Management Software</p>
-                                <img src="../../Content/images/inventory.png" alt="" class="img-fluid img-radiu box-shadow">
+                                <div class="col-lg-6 mt-3">
+                                    <p class="font-weight-light text-info font-italic">Ticket Management Software</p>
+                                    <img src="../../Content/images/ticket.png" alt="" class="img-fluid img-radiu box-shadow" onclick="showSoftwareImage('ticket')">
+                                </div>
                             </div>
-
+                            <div class="row" style="margin-top:200px !important;">
+                                <div class="col-lg-12">
+                                    <img src="../../assets/img/intro-img.svg" class="img-fluid img-radius" alt="">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-right">
                     <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-info" data-dismiss="modal">Get Started</button>
+                    <button id="get-started-btn" type="button" class="btn btn-info" onclick="getStarted()">Get Started</button>
+                    <button id="get-started-btn-wait" disabled type="button" class="btn btn-info"><i class="fas fa-spinner fa-pulse text-success"></i> Please wait...</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="softwareView">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content p-2">
+                <div class="p-2">
+                    <img id="softwareImg" alt="" class="img-fluid img-radius box-shado" style="width:100%;height:100%;">
+                </div>
+                <div class="modal-footer justify-content-right">
+                    <button type="button" class="btn btn-light" onclick="closeSoftwareView()">Close</button>
+                    <button type="button" class="btn btn-info" onclick="selectSoftware()">Select</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="successModal">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="companyRegister" class="modal-title">Successfully Registered</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <h3>Thank you for choosing us!</h3>
+                    <h5 class="font-weight-light text-info font-italic">Please use the below link(s) to access the software(s)</h5>
+                    <h5 class="font-weight-light text-info font-italic">Check your emails for login details</h5>
+                    <br />
+                    <div id="softwareLinks">
+                        
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-right">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -491,7 +567,15 @@
     <!-- Template Main JS File -->
     <script src="../../assets/js/main.js"></script>
 
+    <!-- Toastr -->
+    <script src="../../plugins/toastr/toastr.min.js"></script>
+
     <script type="text/javascript">
+
+        $(document).ready(function () {
+            setTimeout(function () { document.getElementById('advert').play(); }, 5000);
+        });
+
 
         var easternCape = "Alice,Butterworth,East London,Graaff-Reinet,Grahamstown,King William’s Town,Mthatha,Port Elizabeth,Queenstown,Uitenhage,Zwelitsha";
         var freeState = "Bethlehem,Bloemfontein,Jagersfontein,Kroonstad,Odendaalsrus,Parys,Phuthaditjhaba,Sasolburg,Virginia,Welkom";
@@ -503,18 +587,24 @@
         var wc = "Bellville,Cape Town,Constantia,George,Hopefield,Oudtshoorn,Paarl,Simon’s Town,Stellenbosch,Swellendam,Worcester";
         var mp = "Emalahleni,Nelspruit,Secunda";
 
+        var globalSoftwareName;
+        var globalSoftwareArr = [];
+
+        $('#get-started-btn-wait').hide();
+
         function companyRegisterModal() {
             $('#companyRegister').modal('show');
         }
 
         var listEC = easternCape.split(",");
-
+        $('#companyCity').append('<option value="0">Select City</option>');
         for (var i = 0; i < listEC.length; i++) {
             $('#companyCity').append('<option value="' + listEC[i] + '">' + listEC[i] + '</option>');
         }
-        
+
         function provinceChange(val) {
             $('#companyCity').text('');
+            $('#companyCity').append('<option value="0">Select City</option>');
             if (val === 'EasternCape') {
                 var listEC = easternCape.split(",");
 
@@ -580,7 +670,158 @@
             }
         }
 
-        
+        function showSoftwareImage(software) {
+            globalSoftwareName = software;
+            $('#companyRegister').modal('hide');
+            $('#softwareImg').attr('src', '../../Content/images/' + software + '.png');
+            setTimeout(function () { $('#softwareView').modal('show'); }, 500);
+
+        }
+
+        function closeSoftwareView() {
+            globalSoftwareName = '';
+            $('#softwareView').modal('hide');
+            setTimeout(function () { $('#companyRegister').modal('show'); }, 500);
+        }
+
+        function selectSoftware() {
+            if (globalSoftwareArr.indexOf(globalSoftwareName) === -1) {
+                globalSoftwareArr.push(globalSoftwareName);
+                $('#selected-software').append('<span id="badge-' + globalSoftwareName + '" class="badge badge-info m-1">' + globalSoftwareName + '<a href="#" onclick="removeSelectedSoftware(\'' + globalSoftwareName + '\')" class="a-tag-style"> x</a></span>');
+            }
+
+            $('#softwareView').modal('hide');
+            setTimeout(function () { $('#companyRegister').modal('show'); }, 500);
+        }
+
+        function removeSelectedSoftware(software) {
+            $('#badge-' + software).remove();
+            globalSoftwareArr.splice(globalSoftwareArr.indexOf(software));
+        }
+
+
+        function getStarted() {
+            var companyName = $('#companyName').val();
+            var companyEmail = $('#companyEmail').val();
+            var companyTel = $('#companyTel').val();
+            var lineAddress = $('#companyFirstlineAddress').val();
+            var province = $('#companyProvince').val();
+            var city = $('#companyCity').val();
+            var postalCode = $('#companyPostalCode').val();
+            var password = $('#password').val();
+            var confirmedPassword = $('#cPassword').val();
+            var validationsPassed = true;
+
+            if (companyName === '') {
+                toastr.error('Company name needs to be entered');
+                validationsPassed = false;
+            }
+
+            if (companyEmail === '') {
+                toastr.error('Company email needs to be entered');
+                validationsPassed = false;
+            }
+
+            if (companyTel === 0) {
+                toastr.error('Company telephone number needs to be entered');
+                validationsPassed = false;
+            }
+
+            if (lineAddress === '') {
+                toastr.error('Company line address needs to be entered');
+                validationsPassed = false;
+            }
+
+            if (province === "0") {
+                toastr.error('Province needs to be selected');
+                validationsPassed = false;
+            }
+
+            if (city === "0") {
+                toastr.error('City needs to be selected');
+                validationsPassed = false;
+            }
+
+            if (postalCode === 0) {
+                toastr.error('Postal code needs to be entered');
+                validationsPassed = false;
+            }
+
+            if (password === '') {
+                toastr.error('Password needs to be entered');
+                validationsPassed = false;
+            }
+
+            if (confirmedPassword === '') {
+                toastr.error('Confirm password needs to be entered');
+                validationsPassed = false;
+            }
+
+            if (password !== confirmedPassword) {
+                toastr.error('Passwords dont match');
+                validationsPassed = false;
+            }
+
+            if (globalSoftwareArr.length === 0) {
+                toastr.error('Please choose at least one software to use');
+                validationsPassed = false;
+            }
+
+            if (validationsPassed) {
+
+                $('#get-started-btn').hide();
+                $('#get-started-btn-wait').show();
+
+                var companyDetails = {
+                    OrganisationName: companyName,
+                    OrganisationEmail: companyEmail,
+                    OrganisationCell: companyTel,
+                    OrganisationStreet: lineAddress,
+                    OrganisationProvince: province,
+                    OrganisationCity: city,
+                    OrganisationCode: postalCode,
+                    Password: password,
+                    ConfirmedPassword: confirmedPassword,
+                    SelectedSoftwares: globalSoftwareArr
+                };
+
+                $.ajax({
+                    url: '/api/SafriSoft/GetStarted',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: companyDetails,
+                    contextType: "application/json",
+                    traditional: true
+                }).done(function (data) {
+                    if (data.Success) {
+                        $('#get-started-btn').show();
+                        $('#get-started-btn-wait').hide();
+                        setTimeout(function () {
+                            $('#companyRegister').modal('hide');
+                            for (var i = 0; i < globalSoftwareArr.length; i++) {
+                                if (globalSoftwareArr[i] === 'inventory')
+                                    $('#softwareLinks').append('<p>Inventory Software: <a href="https://ims.safrisoft.com">https://ims.safrisoft.com</a></p>');
+                                if (globalSoftwareArr[i] === 'rental')
+                                    $('#softwareLinks').append('<p>Rental Software: <a href="https://rms.safrisoft.com">https://rms.safrisoft.com</a></p>');
+                                if (globalSoftwareArr[i] === 'ticket')
+                                    $('#softwareLinks').append('<p>Ticket Software: <a href="https://tms.safrisoft.com">https://tms.safrisoft.com</a></p>');
+                            }                            
+                        }, 500);
+                        setTimeout(function () {
+                            $('#successModal').modal('show');
+                        }, 500);
+
+                    } else {
+                        $('#get-started-btn').show();
+                        $('#get-started-btn-wait').hide();
+                        toastr.error(data.message);
+                    }
+
+                });
+            }
+
+        }
+
 
     </script>
 
