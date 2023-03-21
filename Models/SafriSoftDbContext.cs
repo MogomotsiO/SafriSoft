@@ -19,10 +19,11 @@ namespace SafriSoftv1._3.Models
         public virtual DbSet<Package> Packages { get; set; }
         public virtual DbSet<PackageFeature> PackageFeatures { get; set; }
         public virtual DbSet<Software> Softwares { get; set; }
+        public virtual DbSet<Email> Emails { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+           // modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
         public static SafriSoftDbContext Create()

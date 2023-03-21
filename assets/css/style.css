@@ -121,7 +121,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header.header-scrolled, #header.header-inner-pages {
-  background: rgba(0, 0, 0, 1);
+  /*background: rgba(0, 0, 0, 1);*/
+  background: #fff;
+  color: #151515;
 }
 
 #header .logo {
@@ -136,7 +138,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header .logo a {
-  color: #fff;
+  color: #000;
   font-family: 'Times New Roman';
 }
 
@@ -177,7 +179,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-menu a {
   display: block;
   position: relative;
-  color: #fff;
+  color: #17a2b8;
   transition: 0.3s;
   font-size: 15px;
   font-family: "Open Sans", sans-serif;
@@ -268,21 +270,23 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Get Startet Button */
 .get-started-btn {
-  color: #151515;
+  color: #fff;
   border-radius: 4px;
   padding: 7px 25px 8px 25px;
   white-space: nowrap;
   transition: 0.3s;
   font-size: 14px;
   display: inline-block;
-  background: url("../img/dynamic-style.png") center;
+  /*background: url("../img/dynamic-style.png") center;*/
+  background: #17a2b8;
 }
 
 .get-started-btn:hover {
-  color: #17a2b8;
+  /*color: #17a2b8;*/
+  color: #fff;
 }
 .get-started-btn i {
-    color: #17a2b8;
+    color: #fff;
 }
 
 @media (max-width: 768px) {
@@ -416,7 +420,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #main {
-    background: url("../img/dynamic-style.png") center;
+    /*background: url("../img/dynamic-style.png") center;*/
+    background: #fff;
 }
 
 #hero:before {
@@ -460,7 +465,8 @@ h1, h2, h3, h4, h5, h6 {
   /*border: 1px solid rgba(255, 255, 255, 0.3);*/
   height: 100%;
   text-align: center;
-  background: url("../img/dynamic-style.png") center;
+  background: #fff;
+  /*background: url("../img/dynamic-style.png") center;*/
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   border-radius:5px;
 }
@@ -681,7 +687,8 @@ section {
   border: 1px solid #ebebeb;
   padding: 80px 20px;
   transition: all ease-in-out 0.3s;
-  background: url("../img/dynamic-style.png") center;
+  /*background: url("../img/dynamic-style.png") center;*/
+  background: #fff;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   border-radius:5px;
 }

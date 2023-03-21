@@ -54,10 +54,18 @@ namespace SafriSoftv1._3.Controllers.API
 
             var success = false;
             var message = string.Empty;
-
+            var resultl = new Organisation();
             SafriSoftDbContext db = new SafriSoftDbContext();
             var organisation = new Organisation();
-            var resultl = db.Organisations.FirstOrDefault(x => x.OrganisationName == org.OrganisationName);
+            try
+            {
+                resultl = db.Organisations.FirstOrDefault(x => x.OrganisationName == org.OrganisationName);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
 
             if (resultl != null)
             {
@@ -87,75 +95,72 @@ namespace SafriSoftv1._3.Controllers.API
                 db.Organisations.Add(organisation);
                 var rowsAffected = await db.SaveChangesAsync();
 
-                var newOrganisation = db.Organisations.FirstOrDefault(x => x.OrganisationName == org.OrganisationName);
-
-                if(newOrganisation != null)
+                if(organisation.OrganisationId != 0)
                 {
                     foreach (var software in org.SelectedSoftwares)
                     {
                         var organisationSoftware = new OrganisationSoftware();
-                        organisationSoftware.OrganisationId = newOrganisation.OrganisationId;
+                        organisationSoftware.OrganisationId = organisation.OrganisationId;
                         organisationSoftware.SoftwareId = db.Softwares.Where(x => x.Name == software).Select(x => x.Id).FirstOrDefault();
                         organisationSoftware.Granted = true;
                         db.OrganisationSoftwares.Add(organisationSoftware);
                         await db.SaveChangesAsync();
                     }
 
-                    if (rowsAffected == 1)
+                    var user = new ApplicationUser { UserName = org.OrganisationEmail, Email = org.OrganisationEmail };
+                    var result = await userManager.CreateAsync(user, org.ConfirmedPassword);
+
+                    if (result.Succeeded)
                     {
-                        var user = new ApplicationUser { UserName = org.OrganisationEmail, Email = org.OrganisationEmail };
-                        var result = await userManager.CreateAsync(user, org.ConfirmedPassword);
+                        Claim OrganisationClaim = new Claim("Organisation", org.OrganisationName);
+                        var saveClaim = await userManager.AddClaimAsync(user.Id, OrganisationClaim);
+                        Claim UsernameClaim = new Claim("Username", org.OrganisationEmail);
+                        var saveUsernameClaim = await userManager.AddClaimAsync(user.Id, UsernameClaim);
+                        var saveRole = userManager.AddToRole(user.Id, "SuperAdmin");
 
-                        if (result.Succeeded)
+                        try
                         {
-                            Claim OrganisationClaim = new Claim("Organisation", org.OrganisationName);
-                            var saveClaim = await userManager.AddClaimAsync(user.Id, OrganisationClaim);
-                            Claim UsernameClaim = new Claim("Username", org.OrganisationEmail);
-                            var saveUsernameClaim = await userManager.AddClaimAsync(user.Id, UsernameClaim);
-                            var saveRole = userManager.AddToRole(user.Id, "SuperAdmin");
-
                             SafriSoftEmailService ems = new SafriSoftEmailService();
-                            var ewsClient = ems.CreateEWSClient();
-
-                            if (ewsClient != null)
+                            string[] to = { org.OrganisationEmail };
+                            string[] cc = { };
+                            var sb = new StringBuilder();
+                            sb.Append("Thank your for choosing SafriSoft.<br /><br />");
+                            sb.Append("Please use the below link(s) to access our software(s)<br/><br />");
+                            foreach (var s in org.SelectedSoftwares)
                             {
-                                string[] to = { org.OrganisationEmail };
-                                string[] cc = { };
-                                var sb = new StringBuilder();
-                                sb.Append("Thank your for choosing SafriSoft.<br /><br />");
-                                sb.Append("Please use the below link(s) to access our software(s)<br/><br />");
-                                foreach (var s in org.SelectedSoftwares)
-                                {
-                                    if (s == "inventory")
-                                        sb.Append("<a href='https://ims.safrisoft.com'>Inventory Management Software</a><br/>");
-                                    if (s == "rental")
-                                        sb.Append("<a href='https://rms.safrisoft.com'>Rental Management Software</a><br/>");
-                                    if (s == "ticket")
-                                        sb.Append("<a href='https://tms.safrisoft.com'>Ticket Management Software</a><br/>");
-                                }
-
-                                sb.Append("<br />");
-                                sb.Append($"<strong>Username</strong>: {org.OrganisationEmail} <br/>");
-                                sb.Append($"<strong>Password</strong>: {org.Password} <br/>");
-
-                                var sendEmailResult = ems.SendEWSEmail(ewsClient, "SafriSoft - Welcome", sb.ToString(), to, cc);
+                                if (s == "inventory")
+                                    sb.Append("<a href='https://ims.safrisoft.com'>Inventory Management Software</a><br/>");
+                                if (s == "rental")
+                                    sb.Append("<a href='https://rms.safrisoft.com'>Rental Management Software</a><br/>");
+                                if (s == "ticket")
+                                    sb.Append("<a href='https://tms.safrisoft.com'>Ticket Management Software</a><br/>");
                             }
+
+                            sb.Append("<br />");
+                            sb.Append($"<strong>Username</strong>: {org.OrganisationEmail} <br/>");
+                            sb.Append($"<strong>Password</strong>: {org.Password} <br/>");
+
+                            var sendEmailResult = ems.SaveEmail("SafriSoft - Welcome", sb.ToString(), "support@safrisoft.com", to, cc);
 
                             success = true;
                             message = "All details have been saved successfully.";
-
-                        }
-                        else
+                        } catch (Exception ex)
                         {
                             success = false;
-                            message = "Company details have been save but the user could not be created. Please contact support.";
+                            message = ex.Message;
                         }
+                        
                     }
                     else
                     {
                         success = false;
-                        message = "Could not save company details, please try again.";
+                        message = "Company details have been saved but the user could not be created. Please contact support.";
                     }
+                }
+                else
+                {
+                    success = false;
+                    message = "Could not save the company details. Please contact support.";
                 }
             }            
             

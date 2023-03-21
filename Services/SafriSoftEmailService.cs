@@ -1,5 +1,7 @@
 ﻿using Microsoft.Exchange.WebServices.Data;
 using Microsoft.Identity.Client;
+using SafriSoftv1._3.Models;
+using SafriSoftv1._3.Models.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,41 +13,49 @@ namespace SafriSoftv1._3.Services
 {
     public class SafriSoftEmailService
     {
-        private string AppId { get; set; } = "5dc46e65-4d26-4f96-8c48-7a6aac24fa95";
-        private string ClientSecret { get; set; } = "2G08Q~QSSxbS2zQvY5lVen2m9aMYJpj-BewbObfS";
-        private string TenantId { get; set; } = "299c2b4e-392b-4167-970d-c43fea846549";
+        private string AppId { get; set; } 
+        private string ClientSecret { get; set; }
+        private string TenantId { get; set; } 
 
         public ExchangeService CreateEWSClient()
         {
-            var cca = ConfidentialClientApplicationBuilder
-                .Create(AppId)
-                .WithClientSecret(ClientSecret)
-                .WithTenantId(TenantId)
-                .Build();
+            //var cca = ConfidentialClientApplicationBuilder
+            //    .Create("5dc46e65-4d26-4f96-8c48-7a6aac24fa95")
+            //    .WithClientSecret("2G08Q~QSSxbS2zQvY5lVen2m9aMYJpj-BewbObfS")
+            //    .WithTenantId("299c2b4e-392b-4167-970d-c43fea846549")
+            //    .Build();
 
-            var ewsScopes = new string[] { "https://outlook.office365.com/.default" };
+            //var ewsScopes = new string[] { "https://outlook.office365.com/.default" };
+            var ewsClient = new ExchangeService();
+
+            var pcaOptions = new PublicClientApplicationOptions
+            {
+                ClientId = "5dc46e65-4d26-4f96-8c48-7a6aac24fa95",
+                TenantId = "299c2b4e-392b-4167-970d-c43fea846549"
+            };
+
+            var pca = PublicClientApplicationBuilder
+                .CreateWithApplicationOptions(pcaOptions).Build();
+
+            // The permission scope required for EWS access
+            var ewsScopes = new string[] { "https://outlook.office365.com/EWS.AccessAsUser.All" };
+
 
             try
             {
-                var authResult = cca.AcquireTokenForClient(ewsScopes)
-                    .ExecuteAsync();
+                // Make the interactive token request
+                var authResult = pca.AcquireTokenInteractive(ewsScopes).ExecuteAsync();
 
                 // Configure the ExchangeService with the access token
-                var ewsClient = new ExchangeService();
                 ewsClient.Url = new Uri("https://outlook.office365.com/EWS/Exchange.asmx");
                 ewsClient.Credentials = new OAuthCredentials(authResult.GetAwaiter().GetResult().AccessToken);
-                ewsClient.ImpersonatedUserId =
-                    new ImpersonatedUserId(ConnectingIdType.SmtpAddress, "support@safrisoft.com");
-
-                //Include x-anchormailbox header
-                ewsClient.HttpHeaders.Add("X-AnchorMailbox", "support@safrisoft.com");
-
-                return ewsClient;
             }
             catch(Exception ex)
             {
-                return new ExchangeService();
+                throw;
             }
+
+            return ewsClient;
         }
 
         public Dictionary<bool,string> SendEWSEmail(ExchangeService ews, string subject, string body, string[] toRecipients, string[] ccReceipients)
@@ -93,6 +103,36 @@ namespace SafriSoftv1._3.Services
             header.Append("<font style='color:#595a5c;text-align: left;'>Dear Client<br/><br/>");
 
             return header;
+        }
+
+        public bool SaveEmail(string subject, string body, string fromAddress, string[] toAddress, string[] toCcAddress)
+        {
+            SafriSoftDbContext SafriSoft = new SafriSoftDbContext();
+
+            var email = new Email();
+
+            bool success = false;
+
+            try
+            {
+                email.Subject = subject;
+                email.Body = body;
+                email.FromAddress = fromAddress;
+                email.ToAddress = string.Join(";", toAddress);
+                email.CcAddress = string.Join(";", toCcAddress);
+                email.EmailStatus = "Process";
+
+                SafriSoft.Emails.Add(email);
+                SafriSoft.SaveChanges();
+
+                success = true;
+            }
+            catch (Exception ex)
+            {
+                success = false;
+            }
+
+            return success;
         }
     }
 }
