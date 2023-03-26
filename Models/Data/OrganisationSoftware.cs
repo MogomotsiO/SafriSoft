@@ -12,6 +12,7 @@ namespace SafriSoftv1._3.Models.Data
         public int Id { get; set; }
         public int OrganisationId { get; set; }
         public int SoftwareId { get; set; }
+        public int PackageId { get; set; }
         public bool Granted { get; set; }
     }
 }

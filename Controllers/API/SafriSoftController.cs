@@ -103,6 +103,14 @@ namespace SafriSoftv1._3.Controllers.API
                         organisationSoftware.OrganisationId = organisation.OrganisationId;
                         organisationSoftware.SoftwareId = db.Softwares.Where(x => x.Name == software).Select(x => x.Id).FirstOrDefault();
                         organisationSoftware.Granted = true;
+
+                        if (software == "inventory")
+                            organisationSoftware.PackageId = 1;
+                        if (software == "rental")
+                            organisationSoftware.PackageId = 6;
+                        if (software == "ticket")
+                            organisationSoftware.PackageId = 0;
+
                         db.OrganisationSoftwares.Add(organisationSoftware);
                         await db.SaveChangesAsync();
                     }

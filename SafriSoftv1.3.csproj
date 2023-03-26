@@ -250,6 +250,10 @@
     <Compile Include="Migrations\202303151839298_emailupdatev2.Designer.cs">
       <DependentUpon>202303151839298_emailupdatev2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202303260927063_OrganisaionSoftwareNewField.cs" />
+    <Compile Include="Migrations\202303260927063_OrganisaionSoftwareNewField.Designer.cs">
+      <DependentUpon>202303260927063_OrganisaionSoftwareNewField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Data\Email.cs" />
@@ -3105,6 +3109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303151839298_emailupdatev2.resx">
       <DependentUpon>202303151839298_emailupdatev2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303260927063_OrganisaionSoftwareNewField.resx">
+      <DependentUpon>202303260927063_OrganisaionSoftwareNewField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
