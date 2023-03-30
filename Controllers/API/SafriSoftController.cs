@@ -124,7 +124,7 @@ namespace SafriSoftv1._3.Controllers.API
                         var saveClaim = await userManager.AddClaimAsync(user.Id, OrganisationClaim);
                         Claim UsernameClaim = new Claim("Username", org.OrganisationEmail);
                         var saveUsernameClaim = await userManager.AddClaimAsync(user.Id, UsernameClaim);
-                        var saveRole = userManager.AddToRole(user.Id, "SuperAdmin");
+                        var saveRole = userManager.AddToRole(user.Id, "OrganisationAdmin");
 
                         try
                         {
