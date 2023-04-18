@@ -232,7 +232,7 @@
                 <div class="row">
                     <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
                         
-                        <video  height="580" width="550" id="advert" loop muted>
+                        <video  height="580" width="550" id="advert" loop>
                             <source src="~/Content/videos/Advert3.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -493,11 +493,26 @@
                                     <p class="font-weight-light text-info font-italic">Rental Management Software</p>
                                     <img src="../../Content/images/rental.png" alt="" class="img-fluid img-radiu box-shadow" onclick="showSoftwareImage('rental')">
                                 </div>
-
                                 <div class="col-lg-6 mt-3">
                                     <p class="font-weight-light text-info font-italic">Ticket Management Software</p>
-                                    <img src="../../Content/images/ticket.png" alt="" class="img-fluid img-radiu box-shadow" onclick="showSoftwareImage('ticket')">
+                                    <div class="position-relative" onclick="showSoftwareImage('ticket')">
+                                        <img src="../../Content/images/ticket.png" class="img-fluid box-shadow" >
+                                        <div class="ribbon-wrapper ribbon-lg">
+                                            <div class="ribbon bg-success text-xs">
+                                                Coming Soon...
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                                @*<div class="col-lg-6 mt-3">
+                                    <p class="font-weight-light text-info font-italic text-left">Ticket Management Software</p>
+                                    <img src="../../Content/images/ticket.png" alt="" class="img-fluid img-radiu box-shadow" onclick="showSoftwareImage('ticket')">
+                                    <div class="ribbon-wrapper ribbon-lg">
+                                        <div class="ribbon bg-info text-lg">
+                                            Coming Soon...
+                                        </div>
+                                    </div>
+                                </div>*@
                             </div>
                             <div class="row" style="margin-top:200px !important;">
                                 <div class="col-lg-12">
@@ -524,10 +539,18 @@
             <div class="modal-content p-2">
                 <div class="p-2">
                     <img id="softwareImg" alt="" class="img-fluid img-radius box-shado" style="width:100%;height:100%;">
+                    <div id="software-ticket-position" class="position-relative">
+                        <img id="softwareImg-ticket" alt="" class="img-fluid img-radius box-shado" style="width:100%;height:100%;">
+                        <div class="ribbon-wrapper ribbon-xl">
+                            <div class="ribbon bg-success text-sm">
+                                Coming Soon...
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer justify-content-right">
                     <button type="button" class="btn btn-light" onclick="closeSoftwareView()">Close</button>
-                    <button type="button" class="btn btn-info" onclick="selectSoftware()">Select</button>
+                    <button id="select-software-btn" type="button" class="btn btn-info" onclick="selectSoftware()">Select</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -681,11 +704,23 @@
                 }
             }
         }
-
+        $('#software-ticket-position').hide();
+        $('#select-software-btn').hide();
         function showSoftwareImage(software) {
             globalSoftwareName = software;
             $('#companyRegister').modal('hide');
-            $('#softwareImg').attr('src', '../../Content/images/' + software + '.png');
+            if (software == "ticket") {
+                $('#softwareImg-ticket').attr('src', '../../Content/images/' + software + '.png');
+                $('#softwareImg').hide();
+                $('#software-ticket-position').show();
+                $('#select-software-btn').hide();
+            } else {
+                $('#softwareImg').attr('src', '../../Content/images/' + software + '.png');
+                $('#softwareImg').show();
+                $('#software-ticket-position').hide();
+                $('#select-software-btn').show();
+            }
+            
             setTimeout(function () { $('#softwareView').modal('show'); }, 500);
 
         }
@@ -699,7 +734,7 @@
         function selectSoftware() {
             if (globalSoftwareArr.indexOf(globalSoftwareName) === -1) {
                 globalSoftwareArr.push(globalSoftwareName);
-                $('#selected-software').append('<span id="badge-' + globalSoftwareName + '" class="badge badge-info m-1">' + globalSoftwareName + '<a href="#" onclick="removeSelectedSoftware(\'' + globalSoftwareName + '\')" class="a-tag-style"> x</a></span>');
+                $('#selected-software').append('<span id="badge-' + globalSoftwareName + '" class="badge badge-info m-1 p-2">' + globalSoftwareName + '<a href="#" onclick="removeSelectedSoftware(\'' + globalSoftwareName + '\')" class="a-tag-style"> x</a></span>');
             }
 
             $('#softwareView').modal('hide');
