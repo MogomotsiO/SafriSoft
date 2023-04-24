@@ -132,7 +132,7 @@ namespace SafriSoftv1._3.Controllers.API
                         {
                             SafriSoftEmailService ems = new SafriSoftEmailService();
                             string[] to = { org.OrganisationEmail };
-                            string[] cc = { };
+                            string[] cc = { "support@safrisoft.com" };
                             var sb = new StringBuilder();
                             sb.Append("Thank you for choosing SafriSoft.<br /><br />");
                             sb.Append("Please use the below link(s) to access our software(s)<br/><br />");
