@@ -39,8 +39,13 @@
 
     <style>
         .box-shadow {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
             cursor:pointer;
+        }
+
+        .box-shadow-2 {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            cursor: pointer;
         }
 
         .a-tag-style{
@@ -86,7 +91,7 @@
                 </ul>
             </nav><!-- .nav-menu -->
 
-            <a href="#" onclick="companyRegisterModal()" class="get-started-btn scrollto"><i class="fa fa-toggle-on"></i> Get Started</a>
+            <a href="#" onclick="companyRegisterModal()" class="get-started-btn scrollto">Start Free Trial</a>
 
         </div>
     </header><!-- End Header -->
@@ -94,14 +99,24 @@
     <section id="hero" class="d-flex align-items-center justify-content-center">
         <div class="container" data-aos="fade-up">
 
-            <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
-                <div class="col-xl-6 col-lg-8">
+            <div class="row justify-content-left align-items-center" data-aos="fade-up" data-aos-delay="150">
+                <div class="col-xl-6 col-lg-6">
                     <h1>Simplified Software For Your Business<span>.</span></h1>
                     <h2>We are a team of talanted individuals</h2>
                 </div>
+                <div class="col-xl-6 col-lg-6 mt-5">
+                    <img src="../../Content/images/safrisoftimsDash.png" alt="" class="img-fluid img-radiu box-shadow" onclick="showSoftwareImage('inventory')">
+                </div>
+                <div class="col-xl-6 col-lg-6 mt-5">
+                    <h1>R 599.99<span> pm</span></h1>
+                    <h2>Standard subscription price</h2>
+                </div>
+                <div class="col-xl-6 col-lg-6 justify-content-right mt-5">
+                    <img src="../../Content/images/safrisoftrmsdash.png" alt="" class="img-fluid img-radiu box-shadow" onclick="showSoftwareImage('rental')">
+                </div>
             </div>
 
-            <div class="row mt-5 justify-content-center" data-aos="zoom-in" data-aos-delay="250">
+            @*<div class="row mt-5 justify-content-center" data-aos="zoom-in" data-aos-delay="250">
                 <div class="col-lg-2 col-md-4 col-sm-4 mt-3">
                     <div class="icon-box">
                         <i class="fa fa-handshake-o"></i>
@@ -120,7 +135,7 @@
                         <h3><a href="">Website Design</a></h3>
                     </div>
                 </div>
-            </div>
+            </div>*@
 
         </div>
     </section><!-- End Hero -->
@@ -486,17 +501,17 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <p class="font-weight-light text-info font-italic">Inventory Management Software</p>
-                                    <img src="../../Content/images/inventory.png" alt="" class="img-fluid img-radiu box-shadow" onclick="showSoftwareImage('inventory')">
+                                    <img src="../../Content/images/inventory.png" alt="" class="img-fluid img-radiu box-shadow-2" onclick="showSoftwareImage('inventory')">
                                 </div>
 
                                 <div class="col-lg-6  text-center">
                                     <p class="font-weight-light text-info font-italic">Rental Management Software</p>
-                                    <img src="../../Content/images/rental.png" alt="" class="img-fluid img-radiu box-shadow" onclick="showSoftwareImage('rental')">
+                                    <img src="../../Content/images/rental.png" alt="" class="img-fluid img-radiu box-shadow-2" onclick="showSoftwareImage('rental')">
                                 </div>
                                 <div class="col-lg-6 mt-3">
                                     <p class="font-weight-light text-info font-italic">Ticket Management Software</p>
                                     <div class="position-relative" onclick="showSoftwareImage('ticket')">
-                                        <img src="../../Content/images/ticket.png" class="img-fluid box-shadow" >
+                                        <img src="../../Content/images/ticket.png" class="img-fluid box-shadow-2" >
                                         <div class="ribbon-wrapper ribbon-lg">
                                             <div class="ribbon bg-success text-xs">
                                                 Coming Soon...

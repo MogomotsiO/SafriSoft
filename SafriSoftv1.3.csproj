@@ -519,6 +519,8 @@
     <Content Include="Content\images\inventoryo.png" />
     <Content Include="Content\images\rental.png" />
     <Content Include="Content\images\safri bg.jpg" />
+    <Content Include="Content\images\safrisoftimsDash.png" />
+    <Content Include="Content\images\safrisoftrmsdash.png" />
     <Content Include="Content\images\ticket.png" />
     <Content Include="Content\videos\Advert3.mp4" />
     <Content Include="creativetim\css\material-dashboard-rtl.css" />
