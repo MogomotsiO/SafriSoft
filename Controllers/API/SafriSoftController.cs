@@ -143,7 +143,7 @@ namespace SafriSoftv1._3.Controllers.API
                                 if (s == "rental")
                                     sb.Append("<a href='https://rms.safrisoft.com'>Rental Management Software</a><br/>");
                                 if (s == "ticket")
-                                    sb.Append("<a href='https://tms.safrisoft.com'>Ticket Management Software</a><br/>");
+                                    sb.Append("<a href='https://tms.safrisoft.com'>Incident Management Software</a><br/>");
                             }
 
                             sb.Append("<br />");
@@ -174,6 +174,35 @@ namespace SafriSoftv1._3.Controllers.API
                 }
             }            
             
+            return Json(new { Success = success, message = message });
+        }
+
+        [HttpPost, Route("BookDemo")]
+        public IHttpActionResult BookDemo(BookingDetailsVm vm)
+        {
+            var success = false;
+            var message = string.Empty;
+
+            try
+            {
+                SafriSoftEmailService ems = new SafriSoftEmailService();
+                string[] to = { "support@safrisoft.com" };
+                string[] cc = { "olifantmogomotsi@gmail.com" };
+                var sb = new StringBuilder();
+                sb.Append("Client would like a demo.<br /><br />");
+                sb.Append($"Email: {vm.email}<br/><br />");
+                
+                var sendEmailResult = ems.SaveEmail("SafriSoft - DEMO", sb.ToString(), "support@safrisoft.com", to, cc);
+
+                success = true;
+                message = "Your request has been received, thank you!";
+            }
+            catch (Exception ex)
+            {
+                success = false;
+                message = "Could not book demo, please check our contact details below";
+            }
+
             return Json(new { Success = success, message = message });
         }
     }

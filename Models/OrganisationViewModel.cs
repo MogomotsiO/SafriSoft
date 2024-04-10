@@ -29,4 +29,9 @@ namespace SafriSoftv1._3.Models
         public string[] SelectedSoftwares { get; set; }
 
     }
+
+    public class BookingDetailsVm
+    {
+        public string email { get; set; }
+    }
 }

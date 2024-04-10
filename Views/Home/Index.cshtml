@@ -58,6 +58,36 @@
             color: #fff;
         }
 
+        .email {
+            height: 50px;
+            background-color: #fff;
+            border: none;
+            margin-top:20px;
+            width:300px;
+            padding:10px;
+        }
+
+        .email:focus-visible{
+            outline: none;
+        }
+
+        .email-btn {
+            height: 50px;
+            background-color: transparent;
+            color:#17a2b8;
+            border: 1px solid #17a2b8;
+            border-left:none;
+            border-radius:5px;
+            border-bottom-left-radius:0px;
+            border-top-left-radius:0px;
+            margin-top: 20px;
+            width:120px;
+        }
+
+        .email-btn:focus {
+            outline: none;
+        }
+
     </style>
 
 </head>
@@ -71,7 +101,6 @@
             <!--<h1 class="logo"><a href="index.html">Safri<span>Soft.</span></a></h1>
             Uncomment below if you prefer to use an image logo -->
             <a href="~/Home/Index" class="logo"><img src="../../assets/img/iconOnly.png" alt="" class="img-fluid"></a>
-
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
                     <li class="active"><a href="~/Home/Index">Home</a></li>
@@ -85,7 +114,7 @@
                         <ul>
                             <li><a href="#" onclick="showSoftwareImage('inventory')">Inventory Management</a></li>
                             <li><a href="#" onclick="showSoftwareImage('rental')">Rental Management</a></li>
-                            <li><a href="#" onclick="showSoftwareImage('ticket')">Ticket Management</a></li>
+                            <li><a href="#" onclick="showSoftwareImage('ticket')">Incident Management</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -110,6 +139,7 @@
                 <div class="col-xl-6 col-lg-6 mt-5">
                     <h1>R 599.99<span> pm</span></h1>
                     <h2>Standard subscription price</h2>
+                    <input id="bookDemoEmail" type="text" class="email" placeholder="Enter email address" /><button onclick="bookDemo()" class="email-btn">Book Demo</button>
                 </div>
                 <div class="col-xl-6 col-lg-6 justify-content-right mt-5">
                     <img src="../../Content/images/safrisoftrmsdash.png" alt="" class="img-fluid img-radiu box-shadow" onclick="showSoftwareImage('rental')">
@@ -417,16 +447,11 @@
                         <div class="footer-info">
                             <h3>Safri<span>Soft.</span></h3>
                             <p>
-                                922 Burnett Street <br>
-                                Fourways, South Africa<br><br>
                                 <strong>Phone:</strong> 067 272 7320<br>
                                 <strong>Email:</strong> support@safrisoft.com<br>
                             </p>
                             <div class="social-links mt-3">
                                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
                                 <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
                             </div>
                         </div>
@@ -509,7 +534,7 @@
                                     <img src="../../Content/images/rental.png" alt="" class="img-fluid img-radiu box-shadow-2" onclick="showSoftwareImage('rental')">
                                 </div>
                                 <div class="col-lg-6 mt-3">
-                                    <p class="font-weight-light text-info font-italic">Ticket Management Software</p>
+                                    <p class="font-weight-light text-info font-italic">Incident Management Software</p>
                                     <div class="position-relative" onclick="showSoftwareImage('ticket')">
                                         <img src="../../Content/images/ticket.png" class="img-fluid box-shadow-2" >
                                         <div class="ribbon-wrapper ribbon-lg">
@@ -866,7 +891,7 @@
                                 if (globalSoftwareArr[i] === 'rental')
                                     $('#softwareLinks').append('<p>Rental Software: <a href="https://rms.safrisoft.com">https://rms.safrisoft.com</a></p>');
                                 if (globalSoftwareArr[i] === 'ticket')
-                                    $('#softwareLinks').append('<p>Ticket Software: <a href="https://tms.safrisoft.com">https://tms.safrisoft.com</a></p>');
+                                    $('#softwareLinks').append('<p>Incident Software: <a href="https://tms.safrisoft.com">https://tms.safrisoft.com</a></p>');
                             }                            
                         }, 500);
                         setTimeout(function () {
@@ -884,6 +909,36 @@
 
         }
 
+        function bookDemo() {
+
+            var email = $('#bookDemoEmail').val();
+
+            if (email == '' || email == undefined) {
+                toastr.error('Email needs to be entered');
+                return;
+            }
+
+            var vm = {
+                email: email
+            }
+
+            $.ajax({
+                url: '/api/SafriSoft/BookDemo',
+                method: 'POST',
+                dataType: 'json',
+                data: vm,
+                contextType: "application/json",
+                traditional: true
+            }).done(function (data) {
+                if (data.Success) {
+                    toastr.success(data.message);
+                    $('#bookDemoEmail').val('');
+                } else {
+                    toastr.error(data.message);
+                }
+
+            });
+        }
 
     </script>
 
