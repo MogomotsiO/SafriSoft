@@ -254,6 +254,10 @@
     <Compile Include="Migrations\202303260927063_OrganisaionSoftwareNewField.Designer.cs">
       <DependentUpon>202303260927063_OrganisaionSoftwareNewField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202404282128093_UpdateSafriSoft.cs" />
+    <Compile Include="Migrations\202404282128093_UpdateSafriSoft.Designer.cs">
+      <DependentUpon>202404282128093_UpdateSafriSoft.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Data\Email.cs" />
@@ -3134,6 +3138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303260927063_OrganisaionSoftwareNewField.resx">
       <DependentUpon>202303260927063_OrganisaionSoftwareNewField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404282128093_UpdateSafriSoft.resx">
+      <DependentUpon>202404282128093_UpdateSafriSoft.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
